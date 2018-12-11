@@ -8,6 +8,7 @@
         {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
         <script src="{{ asset('./js/jquery-3.3.1.min.js') }}"></script>
         <script>
             setTimeout(function () {
@@ -23,62 +24,42 @@
 
         {% block header %}
         <header>
-            <div class="navbar navbar-default navbar-static-top" role="navigation">
-                <div class="container">
+            <nav class="navbar navbar-custom">
+                <div class="container-fluid">
                     <div class="navbar-header">
-                        <a href="{{ path('homepage') }}" class="navbar-brand">SOFTUNI BLOG</a>
-                        
+                        <a class="navbar-brand" href="{{ path('homepage') }}">Pet Store</a>
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-
-                            
-                            <li>
-                                <a href="#">
-                                    Admin Panel
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    My Articles
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    Create Article
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    My Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Logout
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    REGISTER
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    LOGIN
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                    {% if app.user %}
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="{{ path('homepage') }}">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">My Orders</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="./add-category.html">Add category</a></li>
+                                <li><a href="#">Add product</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {% endif %}
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if app.user %}
+                        <li><a href="{{ path('security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        {% else %}
+                        <li><a href="{{ path('user_register') }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                        <li><a href="{{ path('security_login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        {% endif %}
+                    </ul>
                 </div>
-            </div>
+            </nav> 
         </header>
         {% endblock %}
 
@@ -95,7 +76,7 @@
         {% block footer %}
         <footer>
             <div class="container modal-footer">
-                <p>&copy; 2016 - Software University Foundation</p>
+                <p>&copy; 2018 - Pet Store Foundation</p>
             </div>
         </footer>
         {% endblock %}

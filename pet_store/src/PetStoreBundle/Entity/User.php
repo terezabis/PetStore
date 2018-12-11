@@ -3,6 +3,7 @@
 namespace PetStoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="PetStoreBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int
@@ -155,5 +156,27 @@ class User
     {
         return $this->lastName;
     }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getRoles() {
+        return [];
+    }
+
+    public function getSalt() {
+        
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername(): string {
+        return $this->email;
+    }
+
 }
 
