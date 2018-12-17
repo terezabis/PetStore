@@ -24,18 +24,9 @@ class AnimalController extends Controller
         $animal = new Animal();
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
-
+            
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $animal->setCategoryId(1);
-            
-            //$category->addAnimal($animal);
-
-            $em = $this->getDoctrine()->getManager();
-            $category = $em->find('Category', 1);
-            $animal->setCategory($category);
-            $category->addAnimal($animal);
-            
+            $em = $this->getDoctrine()->getManager();        
             $em->persist($animal);
             $em->flush();
 

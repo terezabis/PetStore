@@ -49,6 +49,13 @@ class User implements UserInterface
      * @ORM\Column(name="last_name", type="string", length=255)
      */
     private $lastName;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    private $phone;
 
 
     /**
@@ -155,6 +162,30 @@ class User implements UserInterface
     public function getLastName()
     {
         return $this->lastName;
+    }
+    
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 
     public function eraseCredentials() {

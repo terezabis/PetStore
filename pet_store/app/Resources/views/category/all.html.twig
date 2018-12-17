@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                <div class="panel-heading">
+                    <div>
+                        <h3>Categories</h3>
+                    </div>
+                </div>
+                <hr>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">                        
+                        <table class="categories-table">
+                            {% for category in categories %}
+                            <tr>
+                                <td>
+                                    <h4>{{ category.name }}</h4>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-xs" href="{{ path('category_edit', {'id':category.id}) }}">Edit</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>  
+                    </div>    
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

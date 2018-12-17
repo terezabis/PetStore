@@ -7080,3 +7080,9 @@ article .author  {
 .btn-primary {
     background-color: #604977;
 }
+
+.categories-table td {
+    border-bottom: 1px solid #604977;
+    table-layout: fixed;
+    width: 100%;
+}

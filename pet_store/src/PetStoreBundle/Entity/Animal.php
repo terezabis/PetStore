@@ -36,11 +36,18 @@ class Animal
     private $breed;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="gender", type="boolean")
+     * @ORM\Column(name="gender", type="string", length=255)
      */
     private $gender;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="age", type="integer")
+     */
+    private $age;
 
     /**
      * @var string
@@ -59,7 +66,7 @@ class Animal
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="image", type="text", nullable=false)
      */
     private $image;
 
@@ -153,7 +160,7 @@ class Animal
     /**
      * Set gender
      *
-     * @param integer $gender
+     * @param string $gender
      *
      * @return Animal
      */
@@ -167,7 +174,7 @@ class Animal
     /**
      * Get gender
      *
-     * @return int
+     * @return string
      */
     public function getGender()
     {
@@ -196,6 +203,30 @@ class Animal
     public function getColor()
     {
         return $this->color;
+    }
+    
+    /**
+     * Set age
+     *
+     * @param string $age
+     *
+     * @return Animal
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age
+     *
+     * @return string
+     */
+    public function getAge()
+    {
+        return $this->age;
     }
 
     /**
