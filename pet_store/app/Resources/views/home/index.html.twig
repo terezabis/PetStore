@@ -2,4 +2,28 @@
 
 {% block main %}
 <h1>Welcome!</h1>
+<hr>
+<div class="row">
+    {% for animal in animals %}
+    <div class="product-container">
+        <h4>{{ animal.name }} - {{ animal.breed }}</h4>	
+        <h5>Price: ${{ animal.price }}</h5>									
+        <div class="product-body">
+            <img src="{{ animal.image}}" 
+                 alt="{{ animal.name }} - {{ animal.breed }}" class="img-thumbnail rounded float-left">									
+        </div>
+        <div class="product-buttons">
+            <button class="btn btn-info btn-sm btn-block">Details</button>
+            {% if animal.inStock == 1 %}
+                <button class="btn btn-success btn-sm btn-block">Buy</button>
+                {% else %}
+                <p class="stock-status">Out Of Stock!</p>
+            {% endif %}
+            
+            {{ animal.inStock}}
+        </div>
+    </div>
+    {% endfor %}    
+</div>
+
 {% endblock %}

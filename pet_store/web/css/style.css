@@ -7086,3 +7086,19 @@ article .author  {
     table-layout: fixed;
     width: 100%;
 }
+
+.product-body img {
+	margin-bottom: 3px;
+	width: 100%;
+	height: 200px;
+}
+
+.product-container {
+	width: 19%;
+	display: inline-block;
+	margin: 3px;
+}
+
+.stock-status {
+    font-color: red;
+}
