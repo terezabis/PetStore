@@ -10,17 +10,17 @@
         <h5>Price: ${{ animal.price }}</h5>									
         <div class="product-body">
             <img src="{{ animal.image}}" 
-                 alt="{{ animal.name }} - {{ animal.breed }}" class="img-thumbnail rounded float-left">									
+                 alt="{{ animal.name }} - {{ animal.breed }}" class="img-thumbnail rounded float-center">									
         </div>
         <div class="product-buttons">
-            <button class="btn btn-info btn-sm btn-block details">Details</button>
+            <a class="btn btn-info btn-xs" href="{{ path('animal_details', {'id':animal.id}) }}">Details</a>
             {% if animal.inStock == 1 %}
-                <button class="btn btn-success btn-sm btn-block">Buy</button>
+                <a class="btn btn-success btn-xs" href="#">Buy</a>
                 {% else %}
-                <button class="btn btn-danger btn-sm btn-block out-of-stock" disabled>Out Of Stock!</button>
+                <a class="btn btn-outline-danger btn-xs btn-disabled" href="#">Out Of Stock!</a>
             {% endif %}
-            <a href="{{ path('animal_edit', {'id':animal.id}) }}"><button class="btn btn-pimary btn-sm btn-block btn-edit">Edit</button></a>
-            <a href="{{ path('animal_delete', {'id':animal.id}) }}"><button class="btn btn-danger btn-sm btn-block btn-delete">Delete</button></a>
+            <a class="btn btn-primary btn-xs" href="{{ path('animal_edit', {'id':animal.id}) }}">Edit</a>
+            <a class="btn btn-danger btn-xs" href="{{ path('animal_delete', {'id':animal.id}) }}">Delete</a>
         </div>
     </div>
     {% endfor %}    

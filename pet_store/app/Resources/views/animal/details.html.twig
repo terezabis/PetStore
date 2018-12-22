@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+<h1>Welcome!</h1>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h3>{{ animal.name }} {{ animal.breed }} - ${{ animal.price }}</h3>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="panel-body">								
+                <div class="product-details">
+                    <table>
+                        <col width="30%">
+                        <col width="70%">
+                        <tr>
+                            <td class="details-img">
+                                <img src="{{ animal.image}}" alt="{{ animal.name }} - {{ animal.breed }}" class="img-thumbnail rounded">	
+                                <div class="prod-details-btn">
+                                    {% if animal.inStock == 1 %}
+                                    <a class="btn btn-success btn-xs" href="#">Buy</a>
+                                    {% endif %}
+                                    <a class="btn btn-primary btn-xs" href="{{ path('animal_edit', {'id':animal.id}) }}">Edit</a>
+                                    <a class="btn btn-danger btn-xs" href="{{ path('animal_delete', {'id':animal.id}) }}">Delete</a>
+                                </div>
+                            </td>
+                            <td class="details-description">
+                                {% if animal.inStock == 1 %}
+                                <h5 style="color: green;"><b>In stock</b></h5>
+                                {% else %}
+                                <h5 style="color: red;"><b>Out of stock</b></h5>
+                                {% endif %}
+                                <p><b>Gender:</b> {{ animal.gender }}</p>
+                                <p><b>Age:</b> {{ animal.age }} months</p>
+                                <p><b>Color:</b> {{ animal.color }}</p>
+                                <p>{{ animal.description }}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>    
+</div>
+
+{% endblock %}

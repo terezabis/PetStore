@@ -7088,9 +7088,12 @@ a.list-group-item-danger.active:focus {
 }
 
 .product-container {
-    width: 22%;
-    display: inline-block;
     margin: 3px;
+    padding: 1px;
+    border-top: 1px solid #e2daea;
+    border-left: 1px solid #e2daea;
+    width: 22%;
+    display: inline-block; 
 }
 
 .product-container > * {
@@ -7101,11 +7104,34 @@ a.list-group-item-danger.active:focus {
     font-color: red;
 }
 
-.product-buttons button {
+.product-buttons a {
     margin-top: 2px;
     display: inline-block;
     width: 49%;
 }
+
+a.btn-disabled {
+   pointer-events: none;
+   cursor: default;
+}
+
 .details {
     margin-top: 5px !important;
+}
+
+.details-img {
+	vertical-align: top;
+	text-align: left;
+}
+
+.prod-details-btn a {
+    width: 32%;
+    margin-top: 10px;
+    display: inline-block;
+}
+	
+.details-description {
+	padding-left: 10px;
+	text-align: left;
+	vertical-align: top;
 }

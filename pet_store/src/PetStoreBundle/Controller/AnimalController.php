@@ -68,6 +68,27 @@ class AnimalController extends Controller {
         return $this->render('animal/edit.html.twig', ['form' => $form->createView(),
                     'animal' => $animal]);
     }
+    
+    /**
+     * @Route("/animal/{id}", name="animal_details")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewArticle($id)
+    {
+        /** @var Animal $animal */
+        $animal = $this
+            ->getDoctrine()
+            ->getRepository(Animal::class)
+            ->find($id);
+       
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($animal);
+        $em->flush();
+
+        return $this->render("animal/details.html.twig",
+            ['animal' => $animal]);
+    }
 
     /**
      * @Route("/animal/delete/{id}", name="animal_delete")
