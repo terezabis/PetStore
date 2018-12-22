@@ -36,4 +36,38 @@ class AnimalController extends Controller
         return $this->render('animal/create.html.twig',
             ['form' => $form->createView()]);
     }
+    
+    /**
+     * @Route("/animal/edit/{id}", name="animal_edit")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(Request $request, $id)
+    {
+        $animal = $this
+            ->getDoctrine()
+            ->getRepository(Animal::class)
+            ->find($id);
+
+        if ($animal === null) {
+            return $this->redirectToRoute("homepage");
+        }
+
+        $form = $this->createForm(AnimalType::class, $animal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($animal);
+            $em->flush();
+
+            return $this->redirectToRoute("homepage");
+        }
+
+        return $this->render('animal/edit.html.twig',
+            ['form' => $form->createView(),
+                'animal' => $animal]);
+    }
 }

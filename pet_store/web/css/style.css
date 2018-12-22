@@ -7044,18 +7044,6 @@ a.list-group-item-danger.active:focus {
 .popover {
     color: #2c3e50;
 }
-article .author {
-    margin-bottom: 0;
-}
-article .author  {
-    display: block;
-    font-size: 100%;
-    line-height: 1.42857143;
-    color: #b4bcc2;
-}
-article .author  {
-    content: '\2014 \00A0';
-}
 
 .body-container {
     color: #604977;
@@ -7106,9 +7094,18 @@ article .author  {
 }
 
 .product-container > * {
-  vertical-align:  top;
-  }
+    vertical-align:  top;
+}
 
 .stock-status, .out-of-stock {
     font-color: red;
+    color: red;
+}
+
+.product-buttons button {
+    display: inline-block;
+    width: 49%;
+}
+.details {
+    margin-top: 5px;
 }

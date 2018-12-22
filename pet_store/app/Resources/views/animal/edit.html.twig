@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-login">
+            <div class="panel-heading">
+                <div class="row">
+                    <div>
+                        <h3>Edit animal</h3>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <form enctype="multipart/form-data" action="{{ path('animal_edit', {id: animal.id}) }}" method="POST">
+                            {{ form_errors(form) }}
+                            <div class="form-group">
+                                <label for="animal_name" class="form-label">Name</label>
+                                {{ form_row(form.name, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            <div class="form-group">
+                                <label for="animal_breed" class="form-label">Breed</label>
+                                {{ form_row(form.breed, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            <div class="form-group">
+                                <label for="animal_color" class="form-label">Main color</label>
+                                {{ form_row(form.color, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.gender) }}
+                            </div>
+                            <div class="form-group">
+                                <label for="animal_age" class="form-label">Age in months</label>
+                                {{ form_row(form.age, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            <div class="form-group">
+                                <label for="animal_description" class="form-label">Description</label>
+                                {{ form_row(form.description, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            <div class="form-group">
+                                <label for="animal_price" class="form-label">Price $</label>
+                                {{ form_row(form.price, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            <div class="form-group">
+                                <label for="animal_image" class="form-label">Image URL</label>
+                                {{ form_row(form.image, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="animal_category" class="form-label">Category</label>
+                                {{ form_row(form.category, { 'attr': {'class': 'form-control'} }) }} 
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.inStock) }}
+                            </div>                            
+                            {{ form_row(form._token) }}
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <input type="submit" tabindex="4" class="form-control btn btn-primary" value="Edit">
+                                    </div>
+                                </div>
+                            </div>									
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+
+{% endblock %}

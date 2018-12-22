@@ -13,14 +13,14 @@
                  alt="{{ animal.name }} - {{ animal.breed }}" class="img-thumbnail rounded float-left">									
         </div>
         <div class="product-buttons">
-            <button class="btn btn-info btn-sm btn-block">Details</button>
+            <button class="btn btn-info btn-sm btn-block details">Details</button>
             {% if animal.inStock == 1 %}
                 <button class="btn btn-success btn-sm btn-block">Buy</button>
                 {% else %}
                 <button class="btn btn-danger btn-sm btn-block out-of-stock" disabled>Out Of Stock!</button>
             {% endif %}
-            <button class="btn btn-pimary btn-sm btn-block">Edit</button>
-            <button class="btn btn-danger btn-sm btn-block">Delete</button>
+            <button class="btn btn-pimary btn-sm btn-block btn-edit"><a href="{{ path('animal_edit', {'id':animal.id}) }}">Edit</a></button>
+            <button class="btn btn-danger btn-sm btn-block btn-delete">Delete</button>
         </div>
     </div>
     {% endfor %}    
