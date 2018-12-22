@@ -31,7 +31,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute("homepage");
+            return $this->redirectToRoute("category_all");
         }
 
         return $this->render('category/create.html.twig', ['form' => $form->createView()]);

@@ -17,10 +17,10 @@
             {% if animal.inStock == 1 %}
                 <button class="btn btn-success btn-sm btn-block">Buy</button>
                 {% else %}
-                <p class="stock-status">Out Of Stock!</p>
+                <button class="btn btn-danger btn-sm btn-block out-of-stock" disabled>Out Of Stock!</button>
             {% endif %}
-            
-            {{ animal.inStock}}
+            <button class="btn btn-pimary btn-sm btn-block">Edit</button>
+            <button class="btn btn-danger btn-sm btn-block">Delete</button>
         </div>
     </div>
     {% endfor %}    

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use PetStoreBundle\Entity\Category;
 
 class AnimalType extends AbstractType {
@@ -17,8 +18,12 @@ class AnimalType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('name', TextType::class)
-                ->add('breed', TextType::class)
+        $builder->add('name', TextType::class, array(
+                    'label' => false
+        ))
+                ->add('breed', TextType::class, array(
+                    'label' => false
+        ))
                 ->add('gender', ChoiceType::class, array(
                     'choices' => array(
                         'Male' => 'Male',
@@ -29,10 +34,18 @@ class AnimalType extends AbstractType {
                     'choices_as_values' => true,
                     'label' => false
                 ))
-                ->add('age', NumberType::class)
-                ->add('color', TextType::class)
-                ->add('price', NumberType::class)
-                ->add('image', TextType::class)
+                ->add('age', NumberType::class, array(
+                    'label' => false
+        ))
+                ->add('color', TextType::class, array(
+                    'label' => false
+        ))
+                ->add('price', NumberType::class, array(
+                    'label' => false
+        ))
+                ->add('image', TextType::class, array(
+                    'label' => false
+        ))
                 ->add('inStock', ChoiceType::class, array(
                     'choices' => array(
                         'In stock' => true,
@@ -43,7 +56,10 @@ class AnimalType extends AbstractType {
                     'choices_as_values' => true,
                     'label' => false
                 ))
-                ->add('description', TextType::class)
+                ->add('description', TextareaType::class, array(
+                    'label' => false,
+                    'attr' => array('rows' => '5')
+        ))
                 ->add('category', EntityType::class, array(
                     'class' => Category::class,
                     'choice_label' => 'name',

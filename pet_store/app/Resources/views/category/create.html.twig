@@ -19,7 +19,7 @@
                         <form class="form-horizontal" action="{{ path('category_create') }}" method="POST">
                             <div class="form-group">
                                 <label for="category_name" class="control-label">Category name</label>
-                                <input type="text" id="category_name" name="category[name]" tabindex="1" class="form-control" placeholder="Category name" value="">										
+                                {{ form_row(form.name, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                             {{ form_row(form._token) }}
                             <div class="form-group">

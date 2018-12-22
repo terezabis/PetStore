@@ -21,34 +21,34 @@
                             {{ form_errors(form) }}
                             <div class="form-group">
                                 <label for="animal_name" class="form-label">Name</label>
-                                <input type="text" id="animal_name" name="animal[name]" tabindex="1" class="form-control" placeholder="Name" value="">
+                                {{ form_row(form.name, { 'attr': {'class': 'form-control'} }) }} 
                             </div>
                             <div class="form-group">
                                 <label for="animal_breed" class="form-label">Breed</label>
-                                <input type="text" id="animal_breed" name="animal[breed]" tabindex="1" class="form-control" placeholder="Breed" value="">
+                                {{ form_row(form.breed, { 'attr': {'class': 'form-control'} }) }} 
                             </div>
                             <div class="form-group">
                                 <label for="animal_color" class="form-label">Main color</label>
-                                <input type="text" id="animal_color" name="animal[color]" tabindex="1" class="form-control" placeholder="Main color" value="">
+                                {{ form_row(form.color, { 'attr': {'class': 'form-control'} }) }} 
                             </div>
                             <div class="form-group">
                                 {{ form_row(form.gender) }}
                             </div>
                             <div class="form-group">
                                 <label for="animal_age" class="form-label">Age in months</label>
-                                <input type="number" id="animal_age" name="animal[age]" tabindex="1" class="form-control" placeholder="Age" value="">
+                                {{ form_row(form.age, { 'attr': {'class': 'form-control'} }) }} 
                             </div>
                             <div class="form-group">
                                 <label for="animal_description" class="form-label">Description</label>
-                                <textarea  id="animal_description" name="animal[description]" tabindex="1" class="form-control" rows="5"></textarea>
+                                {{ form_row(form.description, { 'attr': {'class': 'form-control'} }) }} 
                             </div>
                             <div class="form-group">
-                                <label for="animal_price" class="form-label">Price</label>
-                                <input type="number" id="animal_price" name="animal[price]" tabindex="1" class="form-control" placeholder="Price" value="">
+                                <label for="animal_price" class="form-label">Price $</label>
+                                {{ form_row(form.price, { 'attr': {'class': 'form-control'} }) }} 
                             </div>
                             <div class="form-group">
                                 <label for="animal_image" class="form-label">Image URL</label>
-                                <input type="text" id="animal_image" name="animal[image]" tabindex="1" class="form-control" placeholder="URL" value="">
+                                {{ form_row(form.image, { 'attr': {'class': 'form-control'} }) }} 
                             </div>
                             
                             <div class="form-group">
