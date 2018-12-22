@@ -7066,7 +7066,7 @@ a.list-group-item-danger.active:focus {
 }
 
 .btn-primary {
-    background-color: #604977;
+    background-color: #604977 !important;
 }
 
 .categories-table td {
@@ -7099,13 +7099,13 @@ a.list-group-item-danger.active:focus {
 
 .stock-status, .out-of-stock {
     font-color: red;
-    color: red;
 }
 
 .product-buttons button {
+    margin-top: 2px;
     display: inline-block;
     width: 49%;
 }
 .details {
-    margin-top: 5px;
+    margin-top: 5px !important;
 }

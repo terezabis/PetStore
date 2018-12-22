@@ -19,8 +19,8 @@
                 {% else %}
                 <button class="btn btn-danger btn-sm btn-block out-of-stock" disabled>Out Of Stock!</button>
             {% endif %}
-            <button class="btn btn-pimary btn-sm btn-block btn-edit"><a href="{{ path('animal_edit', {'id':animal.id}) }}">Edit</a></button>
-            <button class="btn btn-danger btn-sm btn-block btn-delete">Delete</button>
+            <a href="{{ path('animal_edit', {'id':animal.id}) }}"><button class="btn btn-pimary btn-sm btn-block btn-edit">Edit</button></a>
+            <a href="{{ path('animal_delete', {'id':animal.id}) }}"><button class="btn btn-danger btn-sm btn-block btn-delete">Delete</button></a>
         </div>
     </div>
     {% endfor %}    
