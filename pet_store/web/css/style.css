@@ -7135,3 +7135,7 @@ a.btn-disabled {
 	text-align: left;
 	vertical-align: top;
 }
+
+.btn-outline-danger {
+    color: red;
+}

@@ -15,7 +15,7 @@
         <div class="product-buttons">
             <a class="btn btn-info btn-xs" href="{{ path('animal_details', {'id':animal.id}) }}">Details</a>
             {% if animal.inStock == 1 %}
-                <a class="btn btn-success btn-xs" href="#">Buy</a>
+                <a class="btn btn-success btn-xs" href="{{ path('animal_to_order', {'id':animal.id}) }}">Buy</a>
                 {% else %}
                 <a class="btn btn-outline-danger btn-xs btn-disabled" href="#">Out Of Stock!</a>
             {% endif %}

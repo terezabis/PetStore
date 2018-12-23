@@ -57,6 +57,19 @@ class User implements UserInterface
      */
     private $phone;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="PetStoreBundle\Entity\StoreOrder", mappedBy="user", cascade={"remove"})
+     *
+     */
+    private $storeOrders;
+    
+    public function __construct()
+    {
+        $this->storeOrders = new ArrayCollection();
+        $this->roles = new ArrayCollection();
+    }    
 
     /**
      * Get id
@@ -208,6 +221,21 @@ class User implements UserInterface
     public function getUsername(): string {
         return $this->email;
     }
+    
+    /**
+     * @return ArrayCollection
+     */
+    public function getStoreOrders()
+    {
+        return $this->storeOrders;
+    }
 
+    /**
+     * @param StoreOrder $storeOrder
+     * @return bool
+     */
+    public function belongsToUser(StoreOrder $storeOrder){
+      return  $storeOrder->getUserId() === $this->getId();
+    }
 }
 

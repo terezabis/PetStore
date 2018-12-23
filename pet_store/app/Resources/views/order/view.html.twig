@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <div class="row">                    
+                    <div class="col-xs-6">
+                        {% if order != null %}
+                        <h3>Order {{ order.id }}</h3>
+                        <h5>from {{ order.orderDate}}</h5>
+                        {% else %}
+                        <h3>No added animals here.</h3>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
+            </div>
+            {% if order != null %}
+            <div class="panel-body">								
+                <div class="order-details">
+                    {% for animal in animals %}
+                    <p>{{ animal.name}} {{ animal.breed}} - ${{ animal.price}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>    
+</div>
+
+{% endblock %}

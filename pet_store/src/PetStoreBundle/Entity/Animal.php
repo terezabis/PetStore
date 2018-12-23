@@ -98,6 +98,16 @@ class Animal
      */
     private $category;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="PetStoreBundle\Entity\StoreOrder", mappedBy="store_orders")
+     */
+    private $storeOrders;
+    
+    public function __construct() {
+        $this->storeOrders = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -362,8 +372,16 @@ class Animal
     {
         return $this->category;
     }
-
-
+    
+    /**
+     * @param StoreOrder|null $storeOrder
+     * @return Animal
+     */
+    public function addStoreOrder(StoreOrder $storeOrder = null)
+    {
+        $this->storeOrders[] = $storeOrder;
+        return $this;
+    }
 
 
 }
