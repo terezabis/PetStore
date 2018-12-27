@@ -15,7 +15,7 @@ class AnimalController extends Controller {
 
     /**
      * @Route("/animal/create", name="animal_create")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -38,7 +38,7 @@ class AnimalController extends Controller {
 
     /**
      * @Route("/animal/edit/{id}", name="animal_edit")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -74,7 +74,7 @@ class AnimalController extends Controller {
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewArticle($id)
+    public function viewAnimal($id)
     {
         /** @var Animal $animal */
         $animal = $this
@@ -92,7 +92,7 @@ class AnimalController extends Controller {
 
     /**
      * @Route("/animal/delete/{id}", name="animal_delete")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response

@@ -39,7 +39,8 @@
                         <li class="active"><a href="{{ path('homepage') }}">Home</a></li>
                         <li><a href="{{ path('category_all') }}">Shop</a></li>
                         <li><a href="{{ path('order_view') }}">Cart</a></li>
-                        <li><a href="#">My Orders</a></li>
+                        <li><a href="{{ path('order_all') }}">My Orders</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
                                 <span class="caret"></span></a>
@@ -48,6 +49,7 @@
                                 <li><a href="{{ path('animal_create') }}">Create animal</a></li>
                             </ul>
                         </li>
+                        {% endif %}
                     </ul>
                     {% endif %}
                     <ul class="nav navbar-nav navbar-right">

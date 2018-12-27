@@ -22,10 +22,14 @@
                                 <img src="{{ animal.image}}" alt="{{ animal.name }} - {{ animal.breed }}" class="img-thumbnail rounded">	
                                 <div class="prod-details-btn">
                                     {% if animal.inStock == 1 %}
-                                    <a class="btn btn-success btn-xs" href="#">Buy</a>
+                                    <a class="btn btn-success btn-xs" href="{{ path('animal_to_order', {'id':animal.id}) }}">Buy</a>
                                     {% endif %}
+                                    {% if app.user %}
+                                    {% if is_granted('ROLE_ADMIN') %}
                                     <a class="btn btn-primary btn-xs" href="{{ path('animal_edit', {'id':animal.id}) }}">Edit</a>
                                     <a class="btn btn-danger btn-xs" href="{{ path('animal_delete', {'id':animal.id}) }}">Delete</a>
+                                    {% endif %}
+                                    {% endif %}
                                 </div>
                             </td>
                             <td class="details-description">

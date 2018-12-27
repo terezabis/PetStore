@@ -58,19 +58,20 @@ class StoreOrderController extends Controller
                     return $this->redirectToRoute("homepage");
                 }
             } else {
-                CreateOrder($currentUser, $animal);
+                $this->CreateOrder($currentUser, $animal);
             }
         } else {
-            CreateOrder($currentUser, $animal);
+            $this->CreateOrder($currentUser, $animal);
         }
         return $this->redirectToRoute("homepage");
     }
     
     /**
      * @Route("/order/view", name="order_view")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewUnfinishedOrder()
+    public function viewUnfinishedOrderAction()
     {
         $currentUser = $this->getUser();
         $order = null;
@@ -83,14 +84,60 @@ class StoreOrderController extends Controller
             $em->persist($order);
             $em->flush();
         }
-        
-        $animalsInOrder = $order->getAnimals();  
+        $animalsInOrder = [];
+        if($order != null)
+            $animalsInOrder = $order->getAnimals();  
         
         return $this->render("order/view.html.twig",
             ['order' => $order, 'animals' => $animalsInOrder]);
     }
+    
+    /**
+     * @Route("/order/finish/{id}", name="order_finish")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function finishOrderAction($id)
+    {
+        $order = $this->getDoctrine()
+                      ->getRepository(StoreOrder::class)
+                      ->find($id);
 
-    private function CreateOrder(User $user, Animal $animal) 
+        if ($order === null) {
+            return $this->redirectToRoute("homepage");
+        }
+        
+        $order->setOrderDate(new DateTime('NOW'));
+        $order->setIsFinished(1);
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($order);
+        $em->flush();
+        
+        $ord = null;
+        
+        return $this->render("order/view.html.twig", ['order' => $ord]);
+    }
+    
+    /**
+     * @Route("order/all", name="order_all")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function allUserOrdersAction(Request $request)
+    {        
+        $currentUser = $this->getUser();
+        $orders = $this->getDoctrine()
+                ->getRepository(StoreOrder::class)
+                ->findBy(['userId' => $currentUser->getId(),'isFinished' => 1,], ['orderDate' => 'DESC']);
+
+        return $this->render("order/all.html.twig", [
+            'orders' => $orders ]);
+    }
+
+    protected function CreateOrder(User $user, Animal $animal) 
     {
         $order = new StoreOrder();
         $order->setUser($user);

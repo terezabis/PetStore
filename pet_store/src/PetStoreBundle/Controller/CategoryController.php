@@ -15,7 +15,7 @@ class CategoryController extends Controller
 
     /**
      * @Route("/category/create", name="category_create")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -39,7 +39,7 @@ class CategoryController extends Controller
 
     /**
      * @Route("/category/edit/{id}", name="category_edit")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */

@@ -7090,7 +7090,6 @@ a.list-group-item-danger.active:focus {
 .product-container {
     margin: 3px;
     padding: 1px;
-    border-top: 1px solid #e2daea;
     border-left: 1px solid #e2daea;
     width: 22%;
     display: inline-block; 
@@ -7138,4 +7137,44 @@ a.btn-disabled {
 
 .btn-outline-danger {
     color: red;
+}
+
+.last-order td {
+    margin: 2px;
+    padding: 5px;
+}
+
+.col-price {
+    text-align: right;
+}
+
+.total-price {
+    text-align: right;
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+.btn-order-finish {
+    text-align: center;
+}
+
+.all-orders {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.all-orders th {
+    margin: 2px;
+    padding: 2px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #e2daea;    
+}
+
+.all-orders td {
+    margin: 2px;
+    padding: 3px;
+    text-align: left;
+    vertical-align: middle;
+    border: 1px solid #e2daea;
 }

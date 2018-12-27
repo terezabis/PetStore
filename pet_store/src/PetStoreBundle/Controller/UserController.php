@@ -3,6 +3,7 @@
 namespace PetStoreBundle\Controller;
 
 use PetStoreBundle\Entity\User;
+use PetStoreBundle\Entity\Role;
 use PetStoreBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,13 +39,13 @@ class UserController extends Controller
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPassword());
 
-            /*$role = $this
+            $role = $this
                 ->getDoctrine()
                 ->getRepository(Role::class)
                 ->findOneBy(['name' => 'ROLE_USER']);
              
             $user->addRole($role);
-            */
+            
             
             $user->setPassword($password);
 

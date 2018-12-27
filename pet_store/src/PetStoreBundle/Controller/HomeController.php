@@ -15,14 +15,10 @@ class HomeController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
-    {       
-//        return $this->render('home/index.html.twig', [
-//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-//        ]);
-        
-         $animals = $this->getDoctrine()
+    {               
+        $animals = $this->getDoctrine()
                 ->getRepository(Animal::class)
-                ->findAll();
+                ->findBy([], ['inStock' => 'DESC', 'id' => 'DESC']);
 
         return $this->render("home/index.html.twig", [
             'animals' => $animals,

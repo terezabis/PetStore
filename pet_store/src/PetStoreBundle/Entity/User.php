@@ -2,6 +2,7 @@
 
 namespace PetStoreBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -64,6 +65,18 @@ class User implements UserInterface
      *
      */
     private $storeOrders;
+    
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="PetStoreBundle\Entity\Role")
+     *
+     * @ORM\JoinTable(name="users_roles",
+     *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")}
+     *   )
+     */
+    private $roles;
     
     public function __construct()
     {
@@ -205,8 +218,30 @@ class User implements UserInterface
         
     }
 
-    public function getRoles() {
-        return [];
+    /**
+     * Returns the roles granted to the user.
+     *
+     *     public function getRoles()
+     *     {
+     *         return array('ROLE_USER');
+     *     }
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * @return (Role|string)[] The user roles
+     */
+    public function getRoles()
+    {
+        $stringRoles = [];
+
+        foreach ($this->roles as $role){
+            /** @var Role $role */
+            $stringRoles[] = $role->getRole();
+        }
+
+        return $stringRoles;
     }
 
     public function getSalt() {
@@ -236,6 +271,24 @@ class User implements UserInterface
      */
     public function belongsToUser(StoreOrder $storeOrder){
       return  $storeOrder->getUserId() === $this->getId();
+    }
+    
+    /**
+     * @param \PetStoreBundle\Entity\Role $role
+     *
+     * @return User
+     */
+    public function addRole(Role $role)
+    {
+        $this->roles[]= $role;
+        return $this;
+    }
+    
+    /**
+     * @return bool
+     */
+    public function isAdmin(){
+        return in_array("ROLE_ADMIN", $this->getRoles());
     }
 }
 
