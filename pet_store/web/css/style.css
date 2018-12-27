@@ -7178,3 +7178,18 @@ a.btn-disabled {
     vertical-align: middle;
     border: 1px solid #e2daea;
 }
+
+.animals_count {
+    text-align: center;
+    font-size: 10pt;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #e2daea;    
+    border-radius: 50px;
+    background: #e2daea;
+}
+
+.link_category:link, .link_category, .link_category:hover, .link_category:active {
+    text-decoration: none;
+    color: #604977;
+}

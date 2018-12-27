@@ -83,13 +83,10 @@ class StoreOrderController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($order);
             $em->flush();
-        }
-        $animalsInOrder = [];
-        if($order != null)
-            $animalsInOrder = $order->getAnimals();  
+        }        
         
         return $this->render("order/view.html.twig",
-            ['order' => $order, 'animals' => $animalsInOrder]);
+            ['order' => $order]);
     }
     
     /**

@@ -114,5 +114,25 @@ class AnimalController extends Controller {
 
         return $this->redirectToRoute("homepage");
     }
+    
+    /**
+     * @Route("animal/category/{id}", name="animal_category")
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function allByCategoryAction(Request $request, $id)
+    {               
+        $animals = $this->getDoctrine()
+                ->getRepository(Animal::class)
+                ->findBy(['categoryId' => $id], ['inStock' => 'DESC', 'id' => 'DESC']);
+        
+        $category = $this->getDoctrine()
+                ->getRepository(Category::class)
+                ->find($id);
+
+        return $this->render("animal/by_category.html.twig", [
+            'animals' => $animals, 'category' => $category]);
+    }
 
 }

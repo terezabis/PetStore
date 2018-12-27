@@ -16,9 +16,13 @@
                     <div class="col-md-10 col-md-offset-1">                        
                         <table class="categories-table">
                             {% for category in categories %}
+                            {% if category.animals|length > 0 %}
                             <tr>
                                 <td>
-                                    <h4>{{ category.name }}</h4>
+                                    <h4><a class="link_category" href="{{ path('animal_category', {'id':category.id}) }}">{{ category.name }}</a></h4>
+                                </td>
+                                <td>
+                                    <div class="animals_count">{{ category.animals|length }}</div>                                    
                                 </td>
                                 {% if is_granted('ROLE_ADMIN') %}
                                 <td>
@@ -30,6 +34,7 @@
                                 </td>
                                 {% endif %}
                             </tr>
+                            {% endif %}
                             {% endfor %}
                         </table>  
                     </div>    
