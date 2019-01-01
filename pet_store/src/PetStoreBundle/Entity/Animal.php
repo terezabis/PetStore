@@ -3,6 +3,7 @@
 namespace PetStoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Animal
@@ -22,6 +23,12 @@ class Animal
     private $id;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -29,6 +36,12 @@ class Animal
     private $name;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="breed", type="string", length=255)
@@ -36,6 +49,9 @@ class Animal
     private $breed;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Choice({"Male", "Female"})
+     * 
      * @var string
      *
      * @ORM\Column(name="gender", type="string", length=255)
@@ -43,6 +59,11 @@ class Animal
     private $gender;
     
     /**
+     * @Assert\NotBlank
+     * @Assert\Range(
+     *      min = 1,
+     * )
+     * 
      * @var int
      *
      * @ORM\Column(name="age", type="integer")
@@ -50,6 +71,12 @@ class Animal
     private $age;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 255,
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="color", type="string", length=255)
@@ -57,6 +84,9 @@ class Animal
     private $color;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Range(min=0, max=100500)
+     * 
      * @var string
      *
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2)
@@ -64,6 +94,13 @@ class Animal
     private $price;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Url
+     * @Assert\Regex(
+     *      pattern="/(http(s?):)([\/|.|\w|\s|-])*\.(?:jpg|gif|png)/"),
+     *      message="Invalid image URL!"
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="image", type="text", nullable=false)
@@ -71,6 +108,9 @@ class Animal
     private $image;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Choice({"true", "false"})
+     * 
      * @var bool
      *
      * @ORM\Column(name="in_stock", type="boolean", options={"default":"1"})

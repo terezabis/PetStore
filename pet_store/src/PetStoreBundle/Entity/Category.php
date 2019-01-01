@@ -4,6 +4,7 @@ namespace PetStoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -23,6 +24,12 @@ class Category
     private $id;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 30,
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)

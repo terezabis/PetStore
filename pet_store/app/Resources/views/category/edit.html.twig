@@ -14,11 +14,11 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-
-                        <form class="form-horizontal" enctype="multipart/form-data" action="{{ path('category_edit', {id: category.id}) }}" method="POST">
+                        <form class="form-horizontal" action="{{ path('category_edit', {id: category.id}) }}" method="POST">
+                            {{ form_errors(form) }}
                             <div class="form-group">
                                 <label for="category_name" class="control-label">Category name</label>
-                                <input type="text" id="category_name" name="category[name]" tabindex="1" class="form-control" placeholder="Category name" value="{{ category.name }}">										
+                                {{ form_row(form.name, { 'attr': {'class': 'form-control'} }) }}										
                             </div>
                             {{ form_row(form._token) }}
                             <div class="form-group">
@@ -29,7 +29,6 @@
                                 </div>
                             </div>									
                         </form>
-
                     </div>
                 </div>
             </div>

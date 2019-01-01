@@ -5,6 +5,7 @@ namespace PetStoreBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -24,6 +25,12 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
@@ -31,6 +38,12 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 4,
+     *      minMessage = "Password must be at least {{ limit }} characters long"
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
@@ -38,6 +51,19 @@ class User implements UserInterface
     private $password;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 20,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[A-Z][a-z]+$/",
+     *     
+     *     message="Your first name must start with capital letter and contains only letters."
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
@@ -45,6 +71,18 @@ class User implements UserInterface
     private $firstName;
 
     /**
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 30,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[A-Z][a-z]+$/",
+     *     message="Your last name must start with capital letter and contains only letters."
+     * )
+     * 
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
@@ -52,6 +90,11 @@ class User implements UserInterface
     private $lastName;
     
     /**
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/^\+\d{10,12}$/",
+     *     message="Not a valid phone number. It must start with + and contains between 10 and 12 digits."
+     * )
      * @var string
      *
      * @ORM\Column(name="phone", type="string", length=255)

@@ -24,6 +24,11 @@ class AnimalController extends Controller {
         $animal = new Animal();
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
+        
+        $currentUser = $this->getUser();
+        
+        if(!$currentUser->isAdmin())
+            return $this->redirectToRoute("homepage");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -53,6 +58,11 @@ class AnimalController extends Controller {
         if ($animal === null) {
             return $this->redirectToRoute("homepage");
         }
+        
+        $currentUser = $this->getUser();
+        
+        if(!$currentUser->isAdmin())
+            return $this->redirectToRoute("homepage");
 
         $form = $this->createForm(AnimalType::class, $animal);
         $form->handleRequest($request);
@@ -107,6 +117,11 @@ class AnimalController extends Controller {
         if ($animal === null) {
             return $this->redirectToRoute("homepage");
         }
+        
+        $currentUser = $this->getUser();
+        
+        if(!$currentUser->isAdmin())
+            return $this->redirectToRoute("homepage");
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($animal);

@@ -24,30 +24,26 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        <form class="form-horizontal" method="post">									
+                        <form class="form-horizontal" method="post">	
+                            {{ form_errors(form) }}
                             <div class="form-group">
-                                <label for="user_email">Email address</label>
-                                <input type="email" id="user_email" name="user[email]" tabindex="1" class="form-control" placeholder="Email Address" value="">
+                                <label for="user_email" class="control-label">Email</label>
+                                {{ form_row(form.email, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                             <div class="form-group">
-                                <label for="user_password_first">Password</label>
-                                <input type="password" id="user_password_first" name="user[password][first]" tabindex="2" class="form-control" placeholder="Password">
+                                {{ form_row(form.password) }}
                             </div>
                             <div class="form-group">
-                                <label for="user_password_second">Confirm password</label>
-                                <input type="password" id="user_password_second" name="user[password][second]" tabindex="2" class="form-control" placeholder="Confirm Password">
+                                <label for="user_firstName" class="control-label">First name</label>
+                                {{ form_row(form.firstName, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                             <div class="form-group">
-                                <label for="user_firstName">First name</label>
-                                <input type="text" id="user_firstName" name="user[firstName]" tabindex="1" class="form-control" placeholder="First name" value="">
+                                <label for="user_lastName" class="control-label">Last name</label>
+                                {{ form_row(form.lastName, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                             <div class="form-group">
-                                <label for="user_lastName">Last name</label>
-                                <input type="text" id="user_lastName" name="user[lastName]" tabindex="1" class="form-control" placeholder="Last name" value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="user_phone">Phone number</label>
-                                <input type="text" id="user_phone" name="user[phone]" tabindex="1" class="form-control" placeholder="Phone number" value="">
+                                <label for="user_phone" class="control-label">Phone number</label>
+                                {{ form_row(form.phone, { 'attr': {'class': 'form-control'} }) }}
                             </div>
                             <div class="form-group">
                                 <div class="row">

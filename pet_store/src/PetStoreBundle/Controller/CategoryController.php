@@ -25,6 +25,11 @@ class CategoryController extends Controller
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
+        $currentUser = $this->getUser();
+        
+        if(!$currentUser->isAdmin())
+            return $this->redirectToRoute("homepage");
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
@@ -53,6 +58,11 @@ class CategoryController extends Controller
         if ($category === null) {
             return $this->redirectToRoute("homepage");
         }
+        
+        $currentUser = $this->getUser();
+        
+        if(!$currentUser->isAdmin())
+            return $this->redirectToRoute("homepage");
 
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
