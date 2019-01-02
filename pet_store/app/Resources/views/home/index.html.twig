@@ -4,7 +4,7 @@
 <h1>Welcome in Pet Store!</h1>
 <hr>
 <div class="row">
-    {% for animal in animals %}
+    {% for animal in pagination %}
     <div class="product-container">
         <h4>{{ animal.name }} - {{ animal.breed }}</h4>	
         <h5>Price: ${{ animal.price }}</h5>									
@@ -27,7 +27,12 @@
             {% endif %}
         </div>        
     </div>
-    {% endfor %}    
+    {% endfor %} 
+    
+    {# display navigation #}
+    <div class="navigation text-center">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 </div>
 
 {% endblock %}

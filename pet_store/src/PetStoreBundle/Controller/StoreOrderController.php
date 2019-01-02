@@ -14,7 +14,8 @@ use \Datetime;
 
 class StoreOrderController extends Controller
 {
-
+    const LIMIT = 10;
+    
     /**
      * @Route("/add/{id}", name="animal_to_order")
      * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
@@ -142,8 +143,16 @@ class StoreOrderController extends Controller
                 ->getRepository(StoreOrder::class)
                 ->findBy(['userId' => $currentUser->getId(),'isFinished' => 1,], ['orderDate' => 'DESC']);
 
+        $paginator  = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $orders, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            self::LIMIT/*limit per page*/
+        );
+        
         return $this->render("order/all.html.twig", [
-            'orders' => $orders ]);
+            'pagination' => $pagination ]);
     }
     
     /**
@@ -163,8 +172,16 @@ class StoreOrderController extends Controller
                 ->getRepository(StoreOrder::class)
                 ->findBy(['isFinished' => 1,], ['orderDate' => 'DESC']);
 
+        $paginator  = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $orders, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            self::LIMIT/*limit per page*/
+        );
+        
         return $this->render("order/admin_all.html.twig", [
-            'orders' => $orders ]);
+            'pagination' => $pagination ]);
     }
     
     /**

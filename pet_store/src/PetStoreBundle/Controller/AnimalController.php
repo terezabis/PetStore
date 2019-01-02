@@ -11,8 +11,10 @@ use PetStoreBundle\Form\AnimalType;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 
-class AnimalController extends Controller {
-
+class AnimalController extends Controller 
+{
+    const LIMIT = 8;
+    
     /**
      * @Route("/animal/create", name="animal_create")
      * @Security("is_granted('ROLE_ADMIN')")
@@ -145,9 +147,17 @@ class AnimalController extends Controller {
         $category = $this->getDoctrine()
                 ->getRepository(Category::class)
                 ->find($id);
+        
+        $paginator  = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $animals, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            self::LIMIT/*limit per page*/
+        );
 
         return $this->render("animal/by_category.html.twig", [
-            'animals' => $animals, 'category' => $category]);
+            'pagination' => $pagination, 'category' => $category]);
     }
 
 }

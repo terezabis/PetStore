@@ -54,7 +54,7 @@ class AnimalType extends AbstractType {
                     'expanded' => true,
                     'multiple' => false,
                     'choices_as_values' => true,
-                    'label' => false
+                    'label' => false,
                 ))
                 ->add('description', TextareaType::class, array(
                     'label' => false,
