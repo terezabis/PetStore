@@ -7193,3 +7193,14 @@ a.btn-disabled {
     text-decoration: none;
     color: #604977;
 }
+
+.greeting {
+    position: relative;
+    display: block;
+    padding: 20px 5px;
+    color: #FFFFFF;
+}
+
+.empty-order {
+    text-align: center;
+}

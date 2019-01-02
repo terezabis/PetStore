@@ -8,26 +8,25 @@
             <div class="panel-heading">
                 <div class="row">                    
                     <div class="col-xs-6">
-                        {% if order != null %}
-                        <h3>Order №{{ order.id }}</h3>
-                        <h5>from {{ order.orderDate}}</h5>                        
-                        {% else %}
-                        <h3>No added animals here.</h3>
-                        {% endif %}
+                        <h3>New order</h3>
                     </div>
                 </div>
                 <hr>
             </div>
-            {% if order != null %}
+            {% if order != null and order.animals|length >0 %}
             <div class="panel-body">								
                 <div class="order-details">
                     <table class="last-order">
+                        <col width="5%">
                         <col width="40%">
                         <col width="5%">
                         <col width="10%">
                         {% set total = 0 %}
                         {% for animal in order.animals %}                        
                         <tr>
+                            <td>
+                                <a class="btn btn-danger btn-xs" href="{{ path('order_animal_remove', {'id':animal.id}) }}">Remove</a>
+                            </td>
                             <td>
                                {{ animal.name}} {{ animal.breed}} 
                             </td>
@@ -41,7 +40,7 @@
                         </tr>
                         {% endfor %}
                         <tr>
-                            <td colspan="3" class="total-price">
+                            <td colspan="4" class="total-price">
                                 Total: ${{ total }} 
                             </td>
                         </tr>
@@ -51,6 +50,8 @@
                     </div>
                 </div>
             </div>
+            {% else %}
+            <div class="empty-order">No added animals here.</div>
             {% endif %}
         </div>
     </div>    
